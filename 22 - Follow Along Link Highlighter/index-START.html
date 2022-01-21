@@ -45,6 +45,28 @@
       </p>
     </div>
 
-    <script></script>
+    <script>
+      const links = document.querySelectorAll("a");
+
+      const highlight = document.createElement("span");
+      highlight.classList.add("highlight");
+      document.body.appendChild(highlight);
+
+      links.forEach((link) =>
+        link.addEventListener("mouseenter", highlightLink)
+      );
+
+      function highlightLink() {
+        const rectInfo = this.getBoundingClientRect();
+
+        const adjustedLeft = rectInfo.left + window.scrollX;
+        const adjustedTop = rectInfo.top + window.scrollY;
+
+        highlight.style.width = `${rectInfo.width}px`;
+        highlight.style.height = `${rectInfo.height}px`;
+        highlight.style.left = `${adjustedLeft}px`;
+        highlight.style.top = `${adjustedTop}px`;
+      }
+    </script>
   </body>
 </html>
